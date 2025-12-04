@@ -1,0 +1,11 @@
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+  "session": "testsession123",
+  "name": "John Tester",
+  "email": "john@test.com",
+  "phone": "5555555555",
+  "datetime": "2025-12-03T12:00:00Z"
+}
+
