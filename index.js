@@ -91,16 +91,5 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
-```
 
-## What this does:
 
-1. **API routes** (`/products`, `/categories`, `/orders`) are handled first
-2. **Static files** (JS, CSS, images) are served from `dist`
-3. **All other routes** (`/about`, `/contact`, etc.) serve `index.html`, letting React Router handle them
-
-## The order matters:
-```
-1. API routes (specific paths)
-2. Static files middleware
-3. Catch-all route (must be last)
