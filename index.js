@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path'); // ADD THIS
 const {supabase} = require('./database.js');
 const cors = require('cors')
 const app = express();
@@ -8,7 +9,7 @@ app.use(express.json());
 app.use(cors())
 app.use(express.static('dist'))
 
-
+// API Routes
 app.get('/products', async (request, response)  => {
     const {data} = await supabase
     .from('products')
@@ -48,12 +49,11 @@ app.get('/categories', async (request, response) => {
     response.status(500).json({ error: 'Server error' });
   }
 });
-//ooo
+
 app.post('/orders', async (request, response) => {
   try {
     const { session, name, email, phone, datetime } = request.body;
 
-   
     if (!session || !name || !email || !phone) {
       return response.status(400).json({ error: "Missing required fields" });
     }
@@ -70,6 +70,7 @@ app.post('/orders', async (request, response) => {
         }
       ])
       .select();
+      
     if (error) {
       return response.status(400).json({ error: error.message });
     }
@@ -81,8 +82,25 @@ app.post('/orders', async (request, response) => {
   }
 });
 
+// Catch-all route for React Router (MUST BE LAST!)
+app.get('*', (request, response) => {
+  response.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+```
+
+## What this does:
+
+1. **API routes** (`/products`, `/categories`, `/orders`) are handled first
+2. **Static files** (JS, CSS, images) are served from `dist`
+3. **All other routes** (`/about`, `/contact`, etc.) serve `index.html`, letting React Router handle them
+
+## The order matters:
+```
+1. API routes (specific paths)
+2. Static files middleware
+3. Catch-all route (must be last)
