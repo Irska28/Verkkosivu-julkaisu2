@@ -48,7 +48,7 @@ app.get('/categories', async (request, response) => {
     response.status(500).json({ error: 'Server error' });
   }
 });
-
+//ooo
 app.post('/orders', async (request, response) => {
   try {
     const { session, name, email, phone, datetime } = request.body;
