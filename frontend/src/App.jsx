@@ -17,10 +17,6 @@ function App() {
   const [phone, setPhone] = useState("");
   const [session, setSession] = useState("")
 
-
-
-
-//oo
   useEffect(() => {
     fetch("/categories")
       .then(res => res.json())
@@ -30,9 +26,6 @@ function App() {
       })
       .catch(err => console.error("Category fetch error:", err));
   }, []);
-
-
-
 
   useEffect(() => {
     fetch("/products")
@@ -61,38 +54,33 @@ function App() {
   };
 
   const getFilteredProducts = () => {
-  let filtered = products;
+    let filtered = products;
 
-  if (selectedCategory !== 'all') {
-    filtered = filtered.filter(
-      (product) =>
-        product.category_id.toString() === selectedCategory.toString()
-    );
-  }
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(
+        (product) =>
+          product.category_id.toString() === selectedCategory.toString()
+      );
+    }
 
-  if (searchTerm.trim() !== "") {
-    const term = searchTerm.toLowerCase();
-    filtered = filtered.filter(product =>
-      product.name.toLowerCase().includes(term)
-    );
-  }
+    if (searchTerm.trim() !== "") {
+      const term = searchTerm.toLowerCase();
+      filtered = filtered.filter(product =>
+        product.name.toLowerCase().includes(term)
+      );
+    }
 
-  return filtered;
-};
-
-
-
+    return filtered;
+  };
 
   const cartItemCount = cart.length;
-
-
 
   if (currentView === 'shipping') {
     return (
       <div className="app">
         <header className="header">
           <div className="nav">
-            <img src="/branding/logo/ALTERNATE%20LOGO.svg" alt="Logo" style={{ height: '60px' }} />
+            <h1 style={{ fontSize: '1.5rem', margin: 0 }}>LÄHIRUOKA</h1>
             <div className="nav-right">
               <h5 onClick={() => setCurrentView('etusivu')} style={{ cursor: 'pointer' }}>Etusivu</h5>
               <div className="cart-icon" onClick={() => setShowCart(true)}>
@@ -138,10 +126,10 @@ function App() {
             >
               <label>Ordername: </label>
               <input
-              type='text'
-              required
-              value={session}
-              onChange={(e) => setSession(e.target.value)}
+                type='text'
+                required
+                value={session}
+                onChange={(e) => setSession(e.target.value)}
               />
               <label>Name: </label>
               <input
@@ -183,13 +171,10 @@ function App() {
               </button>
             </form>
           </div>
-
         </div>
-
       </div>
     )
   }
-
 
   // Etusivu-näkymä
   if (currentView === 'etusivu') {
@@ -197,13 +182,12 @@ function App() {
       <div className="landing-page">
         <header className="landing-header">
           <div className="landing-nav">
-            <img src="/branding/logo/ALTERNATE%20LOGO.svg" alt="Logo" style={{ height: '40px' }} />
+            <h1 style={{ fontSize: '1.5rem', margin: 0, color: 'white' }}>LÄHIRUOKA</h1>
             <button onClick={() => setCurrentView('kauppa')} className="etuvisu-btn">
               Kauppaan →
             </button>
           </div>
         </header>
-
 
         <section className="hero-section">
           <div className="hero-content">
@@ -219,7 +203,6 @@ function App() {
             </svg>
           </div>
         </section>
-
 
         <section className="features-section">
           <h2 className="features-title">Kuinka Se Toimii</h2>
@@ -283,7 +266,7 @@ function App() {
     <div className="app">
       <header className="header">
         <div className="nav">
-          <img src="/branding/logo/ALTERNATE%20LOGO.svg" alt="Logo" style={{ height: '60px' }} />
+          <h1 style={{ fontSize: '1.5rem', margin: 0 }}>LÄHIRUOKA</h1>
           <div className="nav-right">
             <h5 onClick={() => setCurrentView('etusivu')} style={{ cursor: 'pointer' }}>Etusivu</h5>
             <div className="cart-icon" onClick={() => setShowCart(true)}>
@@ -339,8 +322,6 @@ function App() {
           </div>
         ) : (
           <>
-
-
             <div className="search-bar">
               <input
                 type="text"
@@ -390,8 +371,6 @@ function App() {
       </footer>
     </div>
   );
-
-
 }
 
 export default App;
