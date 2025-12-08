@@ -81,6 +81,12 @@ app.post('/orders', async (request, response) => {
   }
 });
 
+app.use((req, res) => {
+  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+});
+
+
+
 
 
 const port = process.env.PORT || 3000;
