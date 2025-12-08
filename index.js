@@ -9,7 +9,6 @@ app.use(express.json());
 app.use(cors())
 app.use(express.static('dist'))
 
-// API Routes
 app.get('/products', async (request, response)  => {
     const {data} = await supabase
     .from('products')
@@ -82,10 +81,7 @@ app.post('/orders', async (request, response) => {
   }
 });
 
-// Catch-all route for React Router (MUST BE LAST!)
-app.get('*', (request, response) => {
-  response.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
