@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const path = require('path'); // ADD THIS
 const {supabase} = require('./database.js');
 const cors = require('cors')
 const app = express();
@@ -81,9 +80,6 @@ app.post('/orders', async (request, response) => {
   }
 });
 
-app.use((req, res) => {
-  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
-});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
