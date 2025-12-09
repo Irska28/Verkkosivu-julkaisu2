@@ -1,1 +1,1 @@
-linkki: https://julkaisu-xqanduqx.deployra.app
+linkki: https://verkkosivu-julkaisu2.onrender.com/
